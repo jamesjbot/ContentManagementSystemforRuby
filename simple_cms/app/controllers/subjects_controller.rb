@@ -1,5 +1,12 @@
 class SubjectsController < ApplicationController
+
+  layout 'admin'
+
+  before_action :confirm_logged_in
+  before_action :set_subject_count, :only => [:new, :create, :edit, :update]
+
   def index
+    logger.debug("*** Testing the logger. ***")
     @subjects = Subject.sorted
   end
 
@@ -12,53 +19,61 @@ class SubjectsController < ApplicationController
   end
 
   def create
-    # Instantiate a new object using form parameters
+      # Instantiate a new object using form parameters
     @subject = Subject.new(subject_params)
-    #  Save the object
-    if @subject.save
+      # Save the object
+      if @subject.save
       # If save succeeds, redirect to the index action
-      flash[:notice] = "Subject created successfully"
+      flash[:notice] = "Subject created successfully."
       redirect_to(subjects_path)
-    else 
+      else
       # If save fails, redisplay the form so user can fix problems
       # this renders the new form template
-      render('new')
+        render('new')
+      end
     end
 
-  end
+    def edit
+      @subject = Subject.find(params[:id])
+    end
 
-  def edit
-    @subject = Subject.find(params[:id])
-  end
-
-  def update
+    def update
     # Find object using form parameters
-    @subject = Subject.find(params[:id])
-    #  Save the object
-    if @subject.update_attributes(subject_params)
+      @subject = Subject.find(params[:id])
+    # Save the object
+      if @subject.update_attributes(subject_params)
       # If save succeeds, redirect to the index action
       flash[:notice] = "Subject updated successfully."
-      redirect_to(subjects_path)
-    else 
+      redirect_to(subject_path(@subject))
+      else
       # If save fails, redisplay the form so user can fix problems
       # this renders the edit template
       render('edit')
+      end
     end
-  end
 
-  def delete
-    @subject = Subject.find(params[:id])
-  end
+    def delete
+      @subject = Subject.find(params[:id])
+    end
 
-  def destroy
-    @subject = Subject.find(params[:id])
-    @subject.destroy
-    flash[:notice] = "Subject '#{@subject.name}' destroyed successfully."
-    redirect_to(subjects_path)
-  end
+    def destroy
+      @subject = Subject.find(params[:id])
+      @subject.destroy
+      flash[:notice] = "Subject '#{@subject.name}' destroyed successfully."
+      redirect_to(subjects_path)
+    end
 
-  private
-  def subject_params
-    params.require(:subject).permit(:name,:position,:visible)
-  end
+    private
+
+      def subject_params
+        params.require(:subject).permit(:name, :position, :visible, :created_at)
+      end
+
+        def set_subject_count
+          @subject_count = Subject.count
+          if params[:action] == 'new' || params[:action] == 'create'
+          @subject_count += 1
+        end
+    end
+
 end

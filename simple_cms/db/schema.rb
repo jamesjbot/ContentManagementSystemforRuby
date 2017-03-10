@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170306222344) do
+ActiveRecord::Schema.define(version: 20170309195552) do
 
   create_table "admin_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "first_name"
     t.string   "last_name",       limit: 50
     t.string   "email",           limit: 100, default: "", null: false
     t.string   "username",        limit: 25
-    t.string   "hashed_password", limit: 40
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+    t.string   "password_digest"
     t.index ["username"], name: "index_admin_users_on_username", using: :btree
   end
 
@@ -32,11 +32,13 @@ ActiveRecord::Schema.define(version: 20170306222344) do
   create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "subject_id"
     t.string   "name"
-    t.integer  "permalink"
+    t.string   "permalink"
     t.integer  "position"
     t.boolean  "visible",    default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.index ["permalink"], name: "index_pages_on_permalink", using: :btree
+    t.index ["subject_id"], name: "index_pages_on_subject_id", using: :btree
   end
 
   create_table "section_edits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -54,7 +56,7 @@ ActiveRecord::Schema.define(version: 20170306222344) do
     t.integer  "position"
     t.boolean  "visible"
     t.string   "content_type"
-    t.text     "context",      limit: 65535
+    t.text     "content",      limit: 65535
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["page_id"], name: "index_sections_on_page_id", using: :btree
@@ -63,9 +65,9 @@ ActiveRecord::Schema.define(version: 20170306222344) do
   create_table "subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "position"
-    t.boolean  "visible"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "visible",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
 end
