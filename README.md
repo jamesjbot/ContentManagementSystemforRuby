@@ -4,21 +4,33 @@
 
 A practice project for learning Ruby on Rails.
 
-## Technologies Used
+## Technologies and Concepts Used
    
-Ruby on Rails, MySQL, RubyGems
+Ruby on Rails, MySQL, RubyGems, Authentication, MVC Design pattern, Resourceful routes, CRUD - REST mapping, sanitizing content, data validation, cookies, sessions, and using assets.
 
 ## Example usage
-None at this time 
+As a public user click thru each of the links in the side bar.
 
 ## How to set up the dev environment
-Follow the guide on http://guides.rubyonrails.org/getting_started.html to get started with rails development
-Follow the guide on https://dev.mysql.com/doc/refman/5.7/en/installing.html to install MySQL
-Download the repository
-Navigate into the directory of simple_cms
-Start MySQL with the command: mysql.server start
-Start rails with the command: rails server
+* Follow the guide on http://guides.rubyonrails.org/getting_started.html to get started with rails development
+* Follow the guide on https://dev.mysql.com/doc/refman/5.7/en/installing.html to install MySQL
+* Download the repository: https://github.com/jamesjbot/LearningRubyOnRails
+* Navigate into the directory of simple_cms
+* Start MySQL with the command: `mysql.server start`
+* Install any necessary RubyGems with the command: `bundle install`
+* Advance the MySQL server thru migrations with the command: `rails db:migrate`
+* Start rails with the command: `rails server`
+* To use a public user navigate to: http://localhost:3000/
+* To user the administration page, navigate to http://locahost:3000/admin
 
+### Administration
+* To work from the command line use the command: `rails console`
+* Give yourself an administrator account with the commands: 
+```
+$ a = AdminUser.new(:username => 'username', :password => 'password', :first_name => 'user', :last_name => 'name', :email => 'username@somecompany.com')
+$ a.save
+```
+Now you can create create delete update content from the administration page.
 ## How to ship a change
 Changes are not accepted at this time
  
