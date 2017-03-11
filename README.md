@@ -33,7 +33,7 @@ $ a.save
 Now you can create create delete update content from the administration page.
 
 #### Using Postgres instead of MySQL
-* Install Postgres you can do this by adding  gem 'pg' to you gemfile or use the command: brew install postgresql`
+* Install Postgres you can do this by adding `gem 'pg'` to you gemfile or use the command: `brew install postgresql`
 * Run the command `bundle install`
 * Create the database createdb simple_cms_development
 
