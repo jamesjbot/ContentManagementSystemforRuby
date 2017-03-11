@@ -10,12 +10,22 @@
 #   http://dev.mysql.com/doc/refman/5.7/en/old-client.html
 #
 default: &default
-  adapter: mysql2
-  encoding: utf8
-  pool: 5
-  username: rails_user
-  password: secretpassword
-  socket: /tmp/mysql.sock
+    adapter: postgresql
+    encoding: unicode
+    host: localhost
+    # For details on connection pooling, see rails configuration guide
+    # http://guides.rubyonrails.org/configuring.html#database-pooling
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    username: jamesjongs
+    password: 
+    timeout: 5000
+# default: &default
+#   adapter: mysql2
+#   encoding: utf8
+#   pool: 5
+#   username: rails_user
+#   password: secretpassword
+#   socket: /tmp/mysql.sock
 
 development:
   <<: *default
