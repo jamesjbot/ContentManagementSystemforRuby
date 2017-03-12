@@ -2,14 +2,16 @@
 
 ## Overview
 
-A practice project for learning Ruby on Rails.
+This is a simple content managment system for learning Ruby on Rails. 
 
 ## Technologies and Concepts Used
    
 Ruby on Rails, MySQL, RubyGems, Authentication, MVC Design pattern, Resourceful routes, CRUD - REST mapping, sanitizing content, data validation, cookies, sessions, and using assets.
 
 ## Example usage
-As a public user click thru each of the links in the side bar.
+   As a public user click thru each of the links in the side bar.  
+
+   You can see this website in use at https://sails-full-of-wind.herokuapp.com/  
 
 ## How to set up the dev environment
 * Follow the guide on http://guides.rubyonrails.org/getting_started.html to get started with rails development
