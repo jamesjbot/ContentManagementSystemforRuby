@@ -6,7 +6,7 @@ This is a simple content managment system for learning Ruby on Rails.
 
 ## Technologies and Concepts Used
    
-Ruby on Rails, MySQL, RubyGems, Authentication, MVC Design pattern, Resourceful routes, CRUD - REST mapping, sanitizing content, data validation, cookies, sessions, and using assets.
+Ruby on Rails, MySQL, Postgres, Heroku, RubyGems, Authentication, MVC Design pattern, Resourceful routes, CRUD - REST mapping, sanitizing content, data validation, cookies, sessions, and using assets.
 
 ## Example usage
    As a public user click thru each of the links in the side bar.  
@@ -37,9 +37,9 @@ Now you can create create delete update content from the administration page.
 #### Using Postgres instead of MySQL
 * Install Postgres you can do this by adding `gem 'pg'` to you gemfile or use the command: `brew install postgresql`
 * Run the command `bundle install`
-* Create the database createdb simple_cms_development
-
-
+* Run the command `rake db:migrate`
+* Run the command `rails console`
+* Give yourself an administrator account using code from the administration section above.
 
 ## How to ship a change
 Changes are not accepted at this time
