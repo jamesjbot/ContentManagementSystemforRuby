@@ -23,8 +23,8 @@ class PagesController < ApplicationController
   	@page = Page.new(page_params)
     @page.subject = @subject
   	# Save the object
-  	if @page.save 
-  		flash[:notice] = "Page created successfully"
+  	if @page.save
+  		flash[:notice] = "Page created successfully."
   		redirect_to(pages_path(:subject_id => @subject.id))
   	else
   		render('new')
@@ -41,8 +41,8 @@ class PagesController < ApplicationController
   	# find objects using form parameters
   	@page = Page.find(params[:id])
   	if @page.update_attributes(page_params)
-  		flash[:notice] = "Page updated successfully"
-      redirect_to(page_path(@page,:subject_id => @subject.id))
+  		flash[:notice] = "Page updated successfully."
+      redirect_to(page_path(@page, :subject_id => @subject.id))
   	else
   		# If update and save fails
   		render('edit')
@@ -57,11 +57,11 @@ class PagesController < ApplicationController
   def destroy
   	@page = Page.find(params[:id])
   	@page.destroy
-  	flash[:notice] = "Page deleted successfully"
+  	flash[:notice] = "Page deleted successfully."
   	redirect_to(pages_path(:subject_id => @subject.id))
   end
 
-  private 
+  private
 
   def page_params
     params.require(:page).permit(:name, :position, :visible, :permalink)
