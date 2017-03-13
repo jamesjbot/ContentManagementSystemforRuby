@@ -10,14 +10,14 @@ class AdminUser < ApplicationRecord
 	EMAIL_REGEX = /\A[a-z0-9._%+-]+@[a-z0-9]+\.[a-z]{2,4}\Z/i
 	FORBIDDEN_USERNAMES = ['littlebopeep','humptydumpty','marymary']
 
-	validates :first_name,  :presence => true,
+	validates :first_name,  :presence => false,
 							:length => { :maximum => 25 }
-	validates :last_name, 	:presence => true,
+	validates :last_name, 	:presence => false,
 							:length =>  {:maximum => 50 }
 	validates :username,  	:presence => true,
-							:length => {:within => 8..25},
+							:length => {:within => 3..25},
 							:uniqueness => true						
-	validates :email, 		:presence => true,
+	validates :email, 		:presence => false,
 							:length => {:maximum => 100 },
 							:format => {:with => EMAIL_REGEX},
 							:confirmation => true
