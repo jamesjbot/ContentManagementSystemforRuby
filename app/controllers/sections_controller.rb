@@ -29,8 +29,8 @@ class SectionsController < ApplicationController
   	if @section.save
   		flash[:notice] = "Section created successfully"
   		redirect_to(sections_path(:page_id => @page.id))
-  	else 
-  		# Draw the new 
+  	else
+  		# Draw the new
       @section_count = Section.count + 1
       @pages = Page.sorted
   		render('new')
@@ -42,12 +42,13 @@ class SectionsController < ApplicationController
   	@section = Section.find(params[:id])
     @section_count = Section.count
     @pages = Page.sorted
+    @section_position = Section.find(params[:id]).position
   end
 
   def update
   	# find object using form parameters
   	@section = Section.find(params[:id])
-  	if @section.update_attributes(section_params) 
+  	if @section.update_attributes(section_params)
   		flash[:notice] = 'Section updated successfully'
   		redirect_to(section_path(@section, :page_id => @page.id))
   	else
